@@ -1,11 +1,11 @@
 import axios from "axios";
 import React, { createContext, useEffect, useReducer } from "react";
 import LoadingSpinner from "../../LoadingSpinner/LoadingSpinner";
-import SingleImage from "./SingleImage";
 import Rating from "react-rating";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import ProductProperty from "./ProductProperty";
+import ImageSlider from "./ImageSlider";
 
 export const ProductContext = createContext({});
 
@@ -76,22 +76,16 @@ const SingleProduct = () => {
     <ProductContext.Provider value={state}>
       <div className="my-10 px-6 max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2">
-          <div className="carousel w-full rounded-xl">
-            {state.product.gallery.map((imageObject, index) => (
-              <SingleImage
-                key={imageObject.url}
-                imageObject={imageObject}
-                index={index}
-              ></SingleImage>
-            ))}
+          <div>
+            <ImageSlider></ImageSlider>
           </div>
           <div>
             <div className="card w-full bg-base-100">
-              <div className="card-body">
+              <div className="pt-5 lg:pt-0 lg:pl-5">
                 <h2 className=" text-xl lg:text-2xl font-semibold">
                   {state.product.title}
                 </h2>
-                <div className="flex gap-5">
+                <div className="flex gap-5 mt-5">
                   <Rating
                     initialRating={state.product.ratings_average}
                     emptySymbol={<FontAwesomeIcon icon={faStar} />}
@@ -110,7 +104,7 @@ const SingleProduct = () => {
                     {state.product.ratings_count} Votes
                   </span>
                 </div>
-                <div className="flex gap-5 items-baseline">
+                <div className="flex gap-5 items-baseline mt-5">
                   <span className="text-xl lg:text-3xl font-semibold">
                     Rs.{state.sku.price.discounted}
                   </span>

@@ -6,6 +6,7 @@ const ProductProperty = ({ dispatch }) => {
   const product = state.product;
   const sku = state.sku;
   const [props, setProps] = useState(sku.props);
+  const [displayName, setDisplayName] = useState("");
   // const props = sku.props;
   const skus = product.variation.skus;
   console.log("Initial sku", sku);
@@ -34,7 +35,7 @@ const ProductProperty = ({ dispatch }) => {
         {product.variation.props.map((type) => (
           <div key={type.id} className="my-2">
             <h2 className="font-semibold text-lg">
-              {type.name} : {}
+              {type.name}:{displayName}
             </h2>
             <div className="flex flex-wrap items-center gap-3">
               {type.values.map((value) => (
