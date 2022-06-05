@@ -11,7 +11,7 @@ const ProductProperty = ({ dispatch }) => {
   console.log("Initial sku", sku);
   console.log("Initial props", props);
   console.log("skus", skus);
-  const setSku = (id) => {
+  const handleSetNewSku = (id) => {
     props.map((prop, index) => {
       if (prop.toString().length === id.toString().length) {
         props[index] = id;
@@ -30,32 +30,48 @@ const ProductProperty = ({ dispatch }) => {
     <div>
       {/* <h2>Product ID: {product.id}</h2> */}
       {/* <h2>Number of variations: {product.variation.props.length}</h2> */}
-      <div className="bg-base-200 rounded-xl p-5">
+      <div className="bg-base-100 rounded-xl p-5">
         {product.variation.props.map((type) => (
           <div key={type.id} className="my-2">
             <h2 className="font-semibold text-lg">
               {type.name} : {}
             </h2>
-            <div className="flex flex-wrap items-center gap-5">
+            <div className="flex flex-wrap items-center gap-3">
               {type.values.map((value) => (
                 <div key={value.id}>
                   {value.color ? (
                     <div
-                      onClick={() => setSku(value.id)}
-                      className={` ${
+                      onClick={() => handleSetNewSku(value.id)}
+                      className={` border-2 ${
                         props.indexOf(value.id) !== -1 &&
-                        "border-2 border-black"
-                      }  hover:cursor-pointer p-3 bg-white rounded-lg`}
+                        " border-cyan-600 shadow-xl"
+                      }  hover:cursor-pointer py-3 px-6 bg-white rounded-full  overflow-hidden`}
                     >
-                      <img src={value.thumb} alt={value.title} />
+                      <img
+                        className={`text-center ${
+                          props.indexOf(value.id) !== -1 && "scale-125"
+                        } scale-75`}
+                        src={value.thumb}
+                        alt={value.title}
+                      />
+                      <hr />
+                      <p
+                        className={`text-center ${
+                          props.indexOf(value.id) !== -1
+                            ? " font-semibold"
+                            : "text-gray-500"
+                        }`}
+                      >
+                        {value.title}
+                      </p>
                     </div>
                   ) : (
                     <div
-                      onClick={() => setSku(value.id)}
-                      className={` ${
+                      onClick={() => handleSetNewSku(value.id)}
+                      className={` border-2 ${
                         props.indexOf(value.id) !== -1 &&
-                        "border-2 border-black"
-                      } bg-white hover:cursor-pointer px-6 py-2 rounded-lg`}
+                        " border-cyan-600 text-black font-semibold shadow-xl"
+                      } bg-white hover:cursor-pointer w-[50px] h-[50px] flex justify-center items-center rounded-full  text-gray-500`}
                     >
                       <h2>{value.title}</h2>
                     </div>
