@@ -3,27 +3,38 @@ import { ProductContext } from "./SingleProduct";
 
 const ProductProperty = ({ dispatch }) => {
   const state = useContext(ProductContext);
-  const [displayName, setDisplayName] = useState("");
   const product = state.product;
   const sku = state.sku;
-  const props = sku.props;
+  const [props, setProps] = useState(sku.props);
+  // const props = sku.props;
   const skus = product.variation.skus;
   console.log("Initial sku", sku);
   console.log("Initial props", props);
-  //   console.log(skus);
+  console.log("skus", skus);
   const setSku = (id) => {
-    console.log(id);
-    dispatch({ type: "SET_SKU", payload: product, sku: skus[1] });
+    props.map((prop, index) => {
+      if (prop.toString().length === id.toString().length) {
+        props[index] = id;
+      }
+      return setProps(props);
+    });
+    console.log("New props", props);
+    console.log("id", id);
+    const newSku = skus.find(
+      (sku) => JSON.stringify(sku.props) === JSON.stringify(props)
+    );
+    console.log("newSku", newSku);
+    dispatch({ type: "SET_SKU", payload: product, sku: newSku });
   };
   return (
     <div>
-      <h2>Product ID: {product.id}</h2>
-      <h2>Number of variations: {product.variation.props.length}</h2>
+      {/* <h2>Product ID: {product.id}</h2> */}
+      {/* <h2>Number of variations: {product.variation.props.length}</h2> */}
       <div className="bg-base-200 rounded-xl p-5">
         {product.variation.props.map((type) => (
           <div key={type.id} className="my-2">
             <h2 className="font-semibold text-lg">
-              {type.name} : {displayName}
+              {type.name} : {}
             </h2>
             <div className="flex flex-wrap items-center gap-5">
               {type.values.map((value) => (
