@@ -31,7 +31,7 @@ const ImageSlider = () => {
               <img
                 src={image.url}
                 alt="sliderImg"
-                className="w-full max-w-md h-full rounded-lg"
+                className="w-full max-w-lg h-full rounded-lg"
               />
             )}
           </div>

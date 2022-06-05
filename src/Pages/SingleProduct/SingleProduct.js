@@ -46,8 +46,7 @@ const reducer = (state, action) => {
 
 const SingleProduct = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
-  //   const [product, setProduct] = useState({});
-  //   let errorMessage = "";
+
   useEffect(() => {
     axios
       .get(

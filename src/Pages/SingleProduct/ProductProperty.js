@@ -34,9 +34,16 @@ const ProductProperty = ({ dispatch }) => {
       <div className="bg-base-100 rounded-xl p-5">
         {product.variation.props.map((type) => (
           <div key={type.id} className="my-2">
-            <h2 className="font-semibold text-lg">
-              {type.name}:{displayName}
-            </h2>
+            {/* {type.name} */}
+            {type.values.map(
+              (value) =>
+                props.indexOf(value.id) !== -1 && (
+                  <h2 key={value.id} className="text-lg">
+                    {type.name} :{" "}
+                    <span className="font-semibold">{value.title}</span>
+                  </h2>
+                )
+            )}
             <div className="flex flex-wrap items-center gap-3">
               {type.values.map((value) => (
                 <div key={value.id}>
@@ -46,17 +53,16 @@ const ProductProperty = ({ dispatch }) => {
                       className={` border-2 ${
                         props.indexOf(value.id) !== -1 &&
                         " border-cyan-600 shadow-xl"
-                      }  hover:cursor-pointer py-3 px-6 bg-white rounded-full  overflow-hidden`}
+                      }  hover:cursor-pointer p-5 bg-white rounded-full  overflow-hidden`}
                     >
                       <img
                         className={`text-center ${
                           props.indexOf(value.id) !== -1 && "scale-125"
-                        } scale-75`}
+                        } scale-100`}
                         src={value.thumb}
                         alt={value.title}
                       />
-                      <hr />
-                      <p
+                      {/* <p
                         className={`text-center ${
                           props.indexOf(value.id) !== -1
                             ? " font-semibold"
@@ -64,7 +70,7 @@ const ProductProperty = ({ dispatch }) => {
                         }`}
                       >
                         {value.title}
-                      </p>
+                      </p> */}
                     </div>
                   ) : (
                     <div
