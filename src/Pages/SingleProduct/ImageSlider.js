@@ -3,7 +3,9 @@ import { ProductContext } from "./SingleProduct";
 import { FaArrowAltCircleRight, FaArrowAltCircleLeft } from "react-icons/fa";
 
 const ImageSlider = () => {
-  const gallery = useContext(ProductContext).product.gallery;
+  const state = useContext(ProductContext);
+  const product = state.product;
+  const gallery = product.gallery;
   const [current, setCurrent] = useState(0);
   const length = gallery.length;
 

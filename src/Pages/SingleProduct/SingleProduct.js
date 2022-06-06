@@ -103,7 +103,7 @@ const SingleProduct = () => {
                     {state.product.ratings_count} Votes
                   </span>
                 </div>
-                <div className="flex gap-5 items-baseline mt-5">
+                <div className="flex gap-5 items-center mt-5">
                   <span className="text-xl lg:text-3xl font-semibold">
                     Rs.{state.sku.price.discounted}
                   </span>
@@ -111,7 +111,7 @@ const SingleProduct = () => {
                     Rs.{state.sku.price.old}
                   </span>
                   <span className="text-red-500 lg:text-xl">
-                    {/* old price/discount price  */}(
+                    (
                     {100 -
                       Math.ceil(
                         (state.sku.price.discounted / state.sku.price.old) * 100
