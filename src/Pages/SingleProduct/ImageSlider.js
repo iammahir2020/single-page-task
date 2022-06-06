@@ -9,9 +9,11 @@ const ImageSlider = () => {
   const [current, setCurrent] = useState(0);
   const length = gallery.length;
 
+  // going to next image
   const nextSlide = () => {
     setCurrent(current === length - 1 ? 0 : current + 1);
   };
+  // going to previous image
   const previousSlide = () => {
     setCurrent(current === 0 ? length - 1 : current - 1);
   };

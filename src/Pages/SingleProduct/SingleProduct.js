@@ -60,9 +60,12 @@ const SingleProduct = () => {
       });
   }, []);
 
+  // loading screen while data is being fetched
   if (state.loading) {
     return <LoadingSpinner></LoadingSpinner>;
   }
+
+  // error screen to display if any error while fetching the data
   if (state.error) {
     return (
       <div className="h-screen flex items-center justify-center">
@@ -76,15 +79,18 @@ const SingleProduct = () => {
       <div className="my-10 px-6 max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2">
           <div>
+            {/* displaying the default image gallery  */}
             <ImageSlider></ImageSlider>
           </div>
           <div>
             <div className="card w-full bg-base-100">
+              {/* section fo the information regarding the product  */}
               <div className="pt-5 lg:pt-0 lg:pl-5">
                 <h2 className=" text-xl lg:text-2xl font-semibold">
                   {state.product.title}
                 </h2>
                 <div className="flex gap-5 mt-5">
+                  {/* displaying the rating using the react-rating package  */}
                   <Rating
                     initialRating={state.product.ratings_average}
                     emptySymbol={<FontAwesomeIcon icon={faStar} />}
@@ -111,6 +117,7 @@ const SingleProduct = () => {
                     Rs.{state.sku.price.old}
                   </span>
                   <span className="text-red-500 lg:text-xl">
+                    {/* calculating discount percentage based on new and old price  */}
                     (
                     {100 -
                       Math.ceil(

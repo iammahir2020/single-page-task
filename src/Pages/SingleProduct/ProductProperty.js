@@ -7,6 +7,8 @@ const ProductProperty = ({ dispatch }) => {
   const sku = state.sku;
   const [props, setProps] = useState(sku.props);
   const skus = product.variation.skus;
+
+  // updating the UI data by selecting the sku with corrosponding matching Props data
   const handleSetNewSku = (id) => {
     props.map((prop, index) => {
       if (prop.toString().length === id.toString().length) {
